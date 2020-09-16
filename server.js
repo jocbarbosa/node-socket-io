@@ -21,10 +21,15 @@ io.on('connection', (socket) => {
     // Broadcast when a user connects
     socket.broadcast.emit('message', 'A user has joined the chat');
 
-    // Runs when clinet disconnects
+    // Runs when client disconnects
     socket.on('disconnect', () => {
         io.emit('message', 'A user has left the chat');
     });
+
+    // Listen chat messages
+    socket.on('chatMessage', (msg) => {
+        console.log(msg);
+    })
 
 });
 
